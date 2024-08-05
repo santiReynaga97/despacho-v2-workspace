@@ -1,0 +1,23 @@
+{
+  "name": "despachos-v2-api-swagger",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "targets": {
+    "build": {
+      "executor": "nx:noop",
+      "outputs": ["generated/despachos-v2-api-swagger"]
+    },
+    "codegen": {
+      "executor": "@nx-dotnet/core:openapi-codegen",
+      "options": {
+        "useOpenApiGenerator": true,
+        "openApiGenerator": "typescript",
+        "openapiJsonPath": "generated/despachos-v2-api-swagger",
+        "outputProject": "generated-despachos-v2-api-types"
+      },
+      "dependsOn": ["swagger"],
+      "inputs": ["{projectRoot}/generated/despachos-v2-api-swagger"],
+      "outputs": ["{workspaceRoot}"]
+    }
+  },
+  "implicitDependencies": ["SrcManagement.despachos-v2-api"]
+}

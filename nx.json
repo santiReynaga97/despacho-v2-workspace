@@ -2,14 +2,39 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "defaultBase": "master",
   "namedInputs": {
-    "default": [
-      "{projectRoot}/**/*",
-      "sharedGlobals"
-    ],
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
     "production": [
-      "default"
+      "default",
+      "!{projectRoot}/.eslintrc.json",
+      "!{projectRoot}/eslint.config.js"
     ],
     "sharedGlobals": []
   },
-  "nxCloudAccessToken": "ZTRhYTQ1ODUtOWJlNy00YWMwLTg2N2UtYzAzYTQ4NDYxNmNifHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "ZWY4N2FlYmMtYTlkZS00MDQ0LThhZTItM2QzNjEyOTA0MjI0fHJlYWQtd3JpdGU=",
+  "plugins": ["@nx-dotnet/core"],
+  "targetDefaults": {
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
+    },
+    "@nx/eslint:lint": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore",
+        "{workspaceRoot}/eslint.config.js"
+      ]
+    },
+    "build": {
+      "dependsOn": ["^build", "codegen", "^codegen"]
+    },
+    "codegen": {
+      "cache": true
+    },
+    "swagger": {
+      "cache": true
+    }
+  }
 }

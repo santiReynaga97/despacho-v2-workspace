@@ -1,0 +1,6 @@
+@DespachoV2Workspace.Management.DespachosV2Api_HostAddress = http://localhost:5004
+
+GET {{DespachoV2Workspace.Management.DespachosV2Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
